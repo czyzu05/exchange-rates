@@ -1,13 +1,26 @@
-import React from "react";
-import { ExchangeRatesProvider } from "./context";
+import React, { useContext } from "react";
+import { ExchangeRatesContext } from "./context";
 import Header from "./components/Header";
+import CurrencyForm from "./components/CurrencyForm";
 
 const App = () => {
+  const {
+    firstCurrency,
+    setFirstCurrency,
+    setSecondCurrency,
+    secondCurrency,
+  } = useContext(ExchangeRatesContext);
   return (
     <>
-      <ExchangeRatesProvider>
-        <Header />
-      </ExchangeRatesProvider>
+      <Header />
+      <CurrencyForm
+        selectedCode={firstCurrency}
+        changeRateCode={(e) => setFirstCurrency(e.target.value)}
+      />
+      <CurrencyForm
+        selectedCode={secondCurrency}
+        changeRateCode={(e) => setSecondCurrency(e.target.value)}
+      />
     </>
   );
 };
