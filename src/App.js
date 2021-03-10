@@ -5,22 +5,20 @@ import CurrencyForm from "./components/CurrencyForm";
 
 const App = () => {
   const {
-    firstCurrency,
-    setFirstCurrency,
-    setSecondCurrency,
-    secondCurrency,
+    fromAmount,
+    toAmount,
+    handleChangeFromAmount,
+    handleChangeToAmount,
   } = useContext(ExchangeRatesContext);
 
   return (
     <>
       <Header />
+      <CurrencyForm amount={fromAmount} changeAmount={handleChangeFromAmount} />
       <CurrencyForm
-        selectedCode={firstCurrency}
-        changeRateCode={(e) => setFirstCurrency(e.target.value)}
-      />
-      <CurrencyForm
-        selectedCode={secondCurrency}
-        changeRateCode={(e) => setSecondCurrency(e.target.value)}
+        amount={toAmount}
+        changeAmount={handleChangeToAmount}
+        baseCurrency
       />
     </>
   );

@@ -2,23 +2,42 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { ExchangeRatesContext } from "../context";
 
-const CurrencyForm = ({ selectedCode, changeRateCode }) => {
-  const { currencyData } = useContext(ExchangeRatesContext);
+const CurrencyForm = ({ baseCurrency, amount, changeAmount }) => {
+  const { currencyData, changeCurrency, fromCurrency } = useContext(
+    ExchangeRatesContext
+  );
 
   return (
     <Wrapper>
       <LeftContainer>
         <CountryFlag
-          className={`currency-flag currency-flag-${selectedCode.toLowerCase()}`}
+          className={`currency-flag currency-flag-${
+            baseCurrency
+              ? "pln"
+              : fromCurrency
+              ? fromCurrency.toLowerCase()
+              : null
+          }`}
         />
-        <RateValue type="number" />
+        <RateValue
+          type="number"
+          value={amount ? amount : ""}
+          onChange={changeAmount}
+        />
       </LeftContainer>
-      <RateCode value={selectedCode} onChange={changeRateCode}>
-        {currencyData.map(({ code }) => (
-          <option key={code} value={code}>
-            {code}
-          </option>
-        ))}
+      <RateCode
+        value={baseCurrency ? "PLN" : fromCurrency}
+        onChange={changeCurrency}
+      >
+        {baseCurrency ? (
+          <option value="PLN">PLN</option>
+        ) : (
+          currencyData.map(({ code }) => (
+            <option key={code} value={code}>
+              {code}
+            </option>
+          ))
+        )}
       </RateCode>
     </Wrapper>
   );
