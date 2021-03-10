@@ -1,20 +1,23 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { currencyFlag } from "../data/currencyFlag";
 import { ExchangeRatesContext } from "../context";
 
-const CurrencyForm = ({selectedCode, changeRateCode}) => {
-  const { currencyData} = useContext(ExchangeRatesContext);
+const CurrencyForm = ({ selectedCode, changeRateCode }) => {
+  const { currencyData } = useContext(ExchangeRatesContext);
 
   return (
     <Wrapper>
       <LeftContainer>
-        <CountryFlag src={currencyFlag.CZK} />
+        <CountryFlag
+          className={`currency-flag currency-flag-${selectedCode.toLowerCase()}`}
+        />
         <RateValue type="number" />
       </LeftContainer>
       <RateCode value={selectedCode} onChange={changeRateCode}>
-        {currencyData.map(({code}) => (
-          <option key={code} value={code}>{code}</option>
+        {currencyData.map(({ code }) => (
+          <option key={code} value={code}>
+            {code}
+          </option>
         ))}
       </RateCode>
     </Wrapper>
@@ -43,10 +46,11 @@ const LeftContainer = styled.div`
   align-items: center;
 `;
 
-const CountryFlag = styled.img`
-  width: 70px;
-  height: 50px;
+const CountryFlag = styled.div`
+  width: 60px;
+  height: 45px;
   border-radius: 5px;
+  background-position: center;
 `;
 
 const RateValue = styled.input`

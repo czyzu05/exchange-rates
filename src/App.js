@@ -10,6 +10,7 @@ const App = () => {
     setSecondCurrency,
     secondCurrency,
   } = useContext(ExchangeRatesContext);
+
   return (
     <>
       <Header />
