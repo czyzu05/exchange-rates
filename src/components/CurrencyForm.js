@@ -75,16 +75,18 @@ const CountryFlag = styled.div`
 const RateValue = styled.input`
   margin-left: 15px;
   height: 40px;
+  width: 12rem;
   outline: none;
   background-color: #191d2b;
   border: none;
   border-bottom: 1px solid white;
   color: #fff;
-  font-size: 1rem;
+  font-size: 1.4rem;
 `;
 
 const RateCode = styled.select`
   height: 40px;
+  margin-right: 30px;
   outline: none;
   background-color: #191d2b;
   border: none;

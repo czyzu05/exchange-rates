@@ -9,6 +9,7 @@ export const ExchangeRatesProvider = ({ children }) => {
   const [amount, setAmount] = useState(1);
   const [isAmountFrom, setIsAmountFrom] = useState(true);
   const [exchangeRate, setExchangeRate] = useState();
+  const [errMsg, setErrMsg] = useState(null);
 
   let toAmount, fromAmount;
 
@@ -17,13 +18,23 @@ export const ExchangeRatesProvider = ({ children }) => {
   };
 
   const handleChangeToAmount = (e) => {
-    setAmount(e.target.value);
-    setIsAmountFrom(false);
+    if (e.target.value >= 0) {
+      setAmount(e.target.value);
+      setIsAmountFrom(false);
+      setErrMsg(null);
+    } else {
+      setErrMsg("Value cannot be less than 0");
+    }
   };
 
   const handleChangeFromAmount = (e) => {
-    setAmount(e.target.value);
-    setIsAmountFrom(true);
+    if (e.target.value >= 0) {
+      setAmount(e.target.value);
+      setIsAmountFrom(true);
+      setErrMsg(null);
+    } else {
+      setErrMsg("Value cannot be less than 0");
+    }
   };
 
   useEffect(() => {
@@ -38,7 +49,12 @@ export const ExchangeRatesProvider = ({ children }) => {
     if (fromCurrency != null) {
       axios(
         `http://api.nbp.pl/api/exchangerates/rates/a/${fromCurrency}/`
-      ).then((res) => setExchangeRate(res.data.rates[0].mid));
+      ).then((res) => {
+        setExchangeRate(res.data.rates[0].mid);
+        setErrMsg(null);
+      });
+    } else {
+      setErrMsg("Cannot connect to NBP");
     }
   }, [fromCurrency]);
 
@@ -60,6 +76,7 @@ export const ExchangeRatesProvider = ({ children }) => {
         toAmount,
         handleChangeToAmount,
         handleChangeFromAmount,
+        errMsg,
       }}
     >
       {children}
