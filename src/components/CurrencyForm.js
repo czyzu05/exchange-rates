@@ -56,6 +56,22 @@ const Wrapper = styled.section`
 
   &:first-of-type {
     margin-top: 100px;
+    @media screen and (max-width: 370px) {
+      margin-top: 30px;
+    }
+  }
+
+  @media screen and (max-width: 1400px) {
+    width: 60%;
+  }
+  @media screen and (max-width: 1050px) {
+    width: 75%;
+  }
+  @media screen and (max-width: 815px) {
+    width: 90%;
+  }
+  @media screen and (max-width: 665px) {
+    width: 100%;
   }
 `;
 
@@ -70,6 +86,15 @@ const CountryFlag = styled.div`
   height: 45px;
   border-radius: 5px;
   background-position: center;
+
+  @media screen and (max-width: 550px) {
+    width: 45px;
+    height: 30px;
+  }
+  @media screen and (max-width: 370px) {
+    width: 30px;
+    height: 20px;
+  }
 `;
 
 const RateValue = styled.input`
@@ -82,6 +107,18 @@ const RateValue = styled.input`
   border-bottom: 1px solid white;
   color: #fff;
   font-size: 1.4rem;
+
+  @media screen and (max-width: 665px) {
+    width: 8rem;
+  }
+  @media screen and (max-width: 550px) {
+    width: 6rem;
+    font-size: 1rem;
+  }
+  @media screen and (max-width: 370px) {
+    width: 3rem;
+    font-size: 0.8rem;
+  }
 `;
 
 const RateCode = styled.select`
@@ -94,6 +131,13 @@ const RateCode = styled.select`
   color: #037fff;
   font-size: 1.5rem;
   padding: 5px;
+
+  @media screen and (max-width: 550px) {
+    font-size: 1rem;
+  }
+  @media screen and (max-width: 370px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export default CurrencyForm;

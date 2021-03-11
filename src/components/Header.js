@@ -26,6 +26,26 @@ const Wrapper = styled.div`
     text-transform: uppercase;
     z-index: -1;
     transform: translateY(-90%);
+
+    @media screen and (max-width: 1400px) {
+      font-size: 4.7rem;
+      transform: translateY(-98%);
+    }
+    @media screen and (max-width: 1050px) {
+      font-size: 3.7rem;
+      transform: translateY(-115%);
+    }
+    @media screen and (max-width: 815px) {
+      font-size: 3rem;
+      transform: translateY(-145%);
+    }
+    @media screen and (max-width: 665px) {
+      font-size: 2.5rem;
+      transform: translateY(-165%);
+    }
+    @media screen and (max-width: 550px) {
+      display: none;
+    }
   }
 `;
 
@@ -46,6 +66,12 @@ const Title = styled.h1`
     background: rgba(3, 127, 255, 0.3);
     height: 5px;
     border-radius: 100px;
+    @media screen and (max-width: 815px) {
+      width: 60px;
+    }
+    @media screen and (max-width: 550px) {
+      display: none;
+    }
   }
 
   &::after {
@@ -58,6 +84,21 @@ const Title = styled.h1`
     background: #037fff;
     height: 5px;
     border-radius: 100px;
+
+    @media screen and (max-width: 550px) {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 1050px) {
+    font-size: 2rem;
+  }
+  @media screen and (max-width: 815px) {
+    font-size: 1.5rem;
+  }
+  @media screen and (max-width: 550px) {
+    text-align: center;
+    font-size: 2rem;
   }
 `;
 
